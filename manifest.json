@@ -1,0 +1,44 @@
+{
+    "manifest_version": 3,
+    "name": "simple-screenshot",
+    "version": "1.0",
+    "description": "A minimal chrome extension for basic drag screenshot functionality",
+    "permissions": [
+      "activeTab",
+      "tabs",
+      "scripting",
+      "downloads"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_icon": {
+        "16": "icon16.png"
+      }
+    },
+    "commands": {
+      "toggle_capture": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+Y"
+        },
+        "description": "Toggle drag screenshot"
+      }
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["capture.js"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
+  
